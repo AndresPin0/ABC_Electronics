@@ -1,7 +1,3 @@
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
-
-
 """
 Django settings for abc_electronics project.
 
@@ -16,9 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import djongo
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -31,17 +29,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
+    'electronics',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'electronics',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'abc_electronics.urls'
+ROOT_URLCONF = 'ABC_Electronics.urls'
 
 TEMPLATES = [
     {
@@ -72,31 +69,21 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'abc_electronics.wsgi.application'
-
+WSGI_APPLICATION = 'ABC_Electronics.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-uri = "mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/?retryWrites=true&w=majority"
-
-client = MongoClient(uri, server_api=ServerApi('1'))
-
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mongo',
-        'NAME': 'additional_information',
-        'HOST': 'localhost',
-        'PORT': 27017,
-    }
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'additional_information',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/'
+            }
+        }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -116,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -127,7 +113,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
