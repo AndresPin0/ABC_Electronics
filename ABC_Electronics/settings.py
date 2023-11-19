@@ -119,10 +119,10 @@ WSGI_APPLICATION = 'abc_electronics.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'abc_orders_db',
+        'NAME': 'abc_orders_rel_db',
         'USER': 'yulukeitor',
-        'PASSWORD': 'P2VgAEmxvq8G',
-        'HOST': 'ep-floral-violet-17764179.us-east-2.aws.neon.tech',
+        'PASSWORD': 't5A0uCxhzZnr',
+        'HOST': 'ep-throbbing-bird-49216726.us-east-2.aws.neon.tech',
         'PORT': '5432',  # Puerto por defecto de PostgreSQL
     }
 }

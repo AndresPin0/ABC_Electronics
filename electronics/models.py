@@ -2,7 +2,8 @@ from django.db import models
 
 # Create your models here.
 class CategoryProduct(models.Model):
-    code = models.CharField(max_length=10,
+    code = models.CharField(primary_key=True,
+                            max_length=10,
                             null=False,
                             blank=False)
     
@@ -11,17 +12,16 @@ class CategoryProduct(models.Model):
                                    blank=False)
     
     def __str__(self) -> str:
-        return self.code
+        return f'{self.code} - {self.description}'
     
 
 class Product(models.Model):
-    product_id = models.CharField(max_length=10,
+    product_id = models.CharField(primary_key=True,
+                                  max_length=10,
                                   null=False,
                                   blank=False)
     
-    category_code = models.CharField(max_length=10,
-                                     null=False,
-                                     blank=False)
+    category_code = models.ForeignKey(CategoryProduct, on_delete=models.CASCADE)
     
     description = models.CharField(max_length=100,
                                    null=False,
@@ -41,12 +41,13 @@ class Product(models.Model):
                                         blank=False)
     
     def __str__(self) -> str:
-        return self.product_id
+        return f'{self.product_id} - {self.description}'
     
 class Customer(models.Model):
-    customer_id = models.CharField(max_length=10,
-                                  null=False,
-                                  blank=False)
+    customer_id = models.CharField(primary_key=True,
+                                   max_length=10,
+                                   null=False,
+                                   blank=False)
     
     firstname = models.CharField(max_length=50,
                                   null=False,
@@ -60,8 +61,8 @@ class Customer(models.Model):
                                null=False,
                                blank=False)
     
-    date_of_birth = models.DateField(null=False,
-                                     blank=False)
+    date_of_birth = models.DateTimeField(null=False,
+                                         blank=False)
     
     email = models.EmailField(max_length=100,
                               null=False,
@@ -76,35 +77,34 @@ class Customer(models.Model):
                                   blank=False)
     
     def __str__(self) -> str:
-        return f'{self.customer_id} {self.firstname} {self.lastname}'
+        return f'{self.customer_id} - {self.firstname} {self.lastname}'
     
 class Order(models.Model):
-    order_number = models.IntegerField(null=False,
+    order_number = models.IntegerField(primary_key=True, 
+                                       null=False,
                                        blank=False)
     
-    customer_id = models.CharField(max_length=10,
-                                   null=False,
-                                   blank=False)
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
     
-    order_date = models.DateField(null=False,
-                                  blank=False)
+    order_date = models.DateTimeField(null=False,
+                                      blank=False)
     
-    shipped_date = models.DateField(null=False,
-                                    blank=False)
+    shipped_date = models.DateTimeField(null=False,
+                                        blank=False)
     
-    payment_date = models.DateField(null=False,
-                                    blank=False)
+    payment_date = models.DateTimeField(null=False,
+                                        blank=False)
     
     def __str__(self) -> str:
-        return f'{self.order_number} {self.customer_id}'
+        return f'{self.order_number} - {self.customer_id}'
     
 class OrderDetail(models.Model):
-    order_number = models.IntegerField(null=False,
-                                       blank=False)
+    order_number = models.ForeignKey(Order, on_delete=models.CASCADE)
     
-    product_id = models.CharField(max_length=10,
-                                  null=False,
-                                  blank=False)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('order_number', 'product_id')
     
     def __str__(self) -> str:
         return f'{self.order_number} - {self.product_id}'
