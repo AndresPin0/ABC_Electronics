@@ -1,5 +1,7 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+import djongo
+
 
 
 """
@@ -44,6 +46,8 @@ INSTALLED_APPS = [
     'electronics',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -78,24 +82,51 @@ WSGI_APPLICATION = 'abc_electronics.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-uri = "mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/?retryWrites=true&w=majority"
+# uri = "mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/?retryWrites=true&w=majority"
 
-client = MongoClient(uri, server_api=ServerApi('1'))
+# client = MongoClient(uri, server_api=ServerApi('1'))
 
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
+# try:
+#     client.admin.command('ping')
+#     print("Pinged your deployment. You successfully connected to MongoDB!")
+# except Exception as e:
+#     print(e)
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'additional_information',
+#         'HOST': 'mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/',
+#         'PORT': 27017,
+#     }
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'additional_information',
+#         'ENFORCE_SCHEMA': False,  # Puedes ajustar esto según tus necesidades
+#         'CLIENT': {
+#             'host': 'abcelectronics.nr1t8en.mongodb.net',
+#             'username': 'abc',
+#             'password': 'anc',
+#             'authSource': 'admin',
+#             'authMechanism': 'SCRAM-SHA-1',
+#         },
+#     }
+# }
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mongo',
-        'NAME': 'additional_information',
-        'HOST': 'localhost',
-        'PORT': 27017,
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'abc_orders_db',
+        'USER': 'yulukeitor',
+        'PASSWORD': 'P2VgAEmxvq8G',
+        'HOST': 'ep-floral-violet-17764179.us-east-2.aws.neon.tech',
+        'PORT': '5432',  # Puerto por defecto de PostgreSQL
     }
 }
+
 
 
 # Password validation
