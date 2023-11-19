@@ -1,3 +1,8 @@
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+import djongo
+
+
 """
 Django settings for abc_electronics project.
 
@@ -41,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -82,6 +89,14 @@ DATABASES = {
             'CLIENT': {
                 'host': 'mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/'
             }
+        },
+        'postgresql': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'abc_orders_rel_db',
+            'USER': 'yulukeitor',
+            'PASSWORD': 't5A0uCxhzZnr',
+            'HOST': 'ep-throbbing-bird-49216726.us-east-2.aws.neon.tech',
+            'PORT': '5432',
         }
 }
 
