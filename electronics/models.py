@@ -85,9 +85,7 @@ class Customer(models.Model):
 
 
 class Order(models.Model):
-    order_number = models.IntegerField(primary_key=True,
-                                       null=False,
-                                       blank=False)
+    order_number = models.AutoField(primary_key=True)
 
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
