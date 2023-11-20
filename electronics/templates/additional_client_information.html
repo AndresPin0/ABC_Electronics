@@ -1,10 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}All Forms{% endblock %}
+
+{% block content %}
+    <head>
+  <h2>All Forms</h2>
+    </head>
+    <body>
+
+    <form method="post" action="registerAdditionalInfo/">
+      {% csrf_token %}
+
+      <label for="clientName">Client Name:</label>
+      <input type="text" id="clientName" name="clientName" required>
+
+      <label for="clientEmail">Client Email:</label>
+      <input type="email" id="clientEmail" name="clientEmail" required>
+
+         <label for="birthDate">Birth Date:</label>
+
+      <input type="date" id="birthDate" name="birthDate" required>
+
+      <label for="Gender">Gender:</label>
+        <select id="Gender" name="Gender" required>
+            <option value=""> Select a gender </option>
+
+             <select id="Gender" name="Gender" required>
+              {% for choice in form.GENDER_CHOICES %}
+                <option value="{{ choice }}">{{ choice }}</option>
+              {% endfor %}
+            </select>
+        </select>
+
+      <label for="studying">Studying:</label>
+      <input type="checkbox" id="studying" name="studying">
+
+      <label for="playVideoGames">Play Video Games:</label>
+      <input type="checkbox" id="playVideoGames" name="playVideoGames">
+
+      <label for="platform">Platform:</label>
+      <select id="platform" name="platform">
+        {% for platform in form.PLATFORM_CHOICES %}
+          <option value="{{ platform }}">{{ platform }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="hobbies">Hobbies:</label>
+      <select id="hobbies" name="hobbies" multiple="False">
+          {% for hobby in form.HOBBIES_CHOICES %}
+                <option value="{{ hobby }}">{{ hobby }}</option>
+            {% endfor %}
+      </select>
+
+        <button type="submit">Submit</button>
+    </form>
+    </body>
+{% endblock %}
