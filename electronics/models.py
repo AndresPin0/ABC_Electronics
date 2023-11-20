@@ -30,15 +30,18 @@ class Product(models.Model):
     quantity_available = models.IntegerField(null=False,
                                              blank=False)
     
-    cost = models.DecimalField(max_digits=10,
+    cost = models.DecimalField(max_digits=100,
                                decimal_places=2,
                                null=False,
                                blank=False)
     
-    selling_price = models.DecimalField(max_digits=10,
+    selling_price = models.DecimalField(max_digits=100,
                                         decimal_places=2,
                                         null=False,
                                         blank=False)
+    
+    referential_image_path = models.CharField(max_length=1000,
+                                              null=True)
     
     def __str__(self) -> str:
         return f'{self.product_id} - {self.description}'

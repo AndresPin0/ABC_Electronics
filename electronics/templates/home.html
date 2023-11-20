@@ -24,7 +24,7 @@
                 <a class="product-link" data-product-id="{{ product.product_id }}" style="text-decoration: none; color: #333;" href="#">
                     <div class="product-container">
 
-                        <img src="{{ product.image.url }}" alt="{{ product.description }}" style="max-width: 100px; max-height: 100px;">
+                        <img src="{% static product.referential_image_path %}" alt="{{ product.description }}" style="max-width: 100px; max-height: 100px;">
                         <h3>{{ product.description }}</h3>
                         <p>Precio: ${{ product.selling_price }}</p>
                     

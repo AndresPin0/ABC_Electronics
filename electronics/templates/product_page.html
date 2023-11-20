@@ -15,19 +15,23 @@
 <body>
 
     <div>
-        <img src="{{ product.image.url }}" alt="{{ product.description }}" style="max-width: 300px; max-height: 300px;">
+        <img src="{% static product.referential_image_path %}" alt="{{ product.description }}" style="max-width: 300px; max-height: 300px;">
+
         <h2>{{ product.description }}</h2>
         <p>Precio: ${{ product.selling_price }}</p>
+        <p>Cantidad disponible: {{ product.quantity_available }}</p>
     
         <!-- Botón para agregar al carrito -->
         <form method="post" action="#">
             {% csrf_token %}
+
             <button type="submit">Agregar al Carrito</button>
         </form>
     
         <!-- Botón para comprar directamente -->
         <form method="post" action="#">
             {% csrf_token %}
+
             <button type="submit">Comprar Directamente</button>
         </form>
     </div>
