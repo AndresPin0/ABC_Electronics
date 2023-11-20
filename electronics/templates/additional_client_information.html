@@ -4,55 +4,94 @@
 
 {% block content %}
     <head>
-  <h2>All Forms</h2>
+    {% load static %}
+     <h2>All Forms</h2>
     </head>
     <body>
 
     <form method="post" action="registerAdditionalInfo/">
       {% csrf_token %}
 
-      <label for="clientName">Client Name:</label>
-      <input type="text" id="clientName" name="clientName" required>
+        <label for="birthDate">Birth Date:</label>
+            <input type="date" id="birthDate" name="birthDate" required>
 
-      <label for="clientEmail">Client Email:</label>
-      <input type="email" id="clientEmail" name="clientEmail" required>
+       <label for="gender">Gender:</label>
+        <label>
+          <select id="gender" name="gender">
+            {% for choice in form1.gender.field.choices%}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% endfor %}
+          </select>
+        </label>
 
-         <label for="birthDate">Birth Date:</label>
-
-      <input type="date" id="birthDate" name="birthDate" required>
-
-      <label for="Gender">Gender:</label>
-        <select id="Gender" name="Gender" required>
-            <option value=""> Select a gender </option>
-
-             <select id="Gender" name="Gender" required>
-              {% for choice in form.GENDER_CHOICES %}
-                <option value="{{ choice }}">{{ choice }}</option>
-              {% endfor %}
-            </select>
-        </select>
-
-      <label for="studying">Studying:</label>
+        <label for="studying">Studying:</label>
       <input type="checkbox" id="studying" name="studying">
 
       <label for="playVideoGames">Play Video Games:</label>
       <input type="checkbox" id="playVideoGames" name="playVideoGames">
 
       <label for="platform">Platform:</label>
-      <select id="platform" name="platform">
-        {% for platform in form.PLATFORM_CHOICES %}
-          <option value="{{ platform }}">{{ platform }}</option>
-        {% endfor %}
-      </select>
-
-      <label for="hobbies">Hobbies:</label>
-      <select id="hobbies" name="hobbies" multiple="False">
-          {% for hobby in form.HOBBIES_CHOICES %}
-                <option value="{{ hobby }}">{{ hobby }}</option>
+        <label>
+          <select id="platform" name="platform">
+            {% for choice in form1.platforms.field.choices %}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
             {% endfor %}
-      </select>
+          </select>
+        </label>
 
-        <button type="submit">Submit</button>
+    {% for option in form.options %}
+7        <li>
+8          <label for="{{ option.id_for_label }}">
+9            {{ option.choice_label }}
+10            {{ option }}
+11          </label>
+12        </li>
+13      {% endfor %}
+
+    <form method="post" action="registerAdditionalInfo/">
+        {% csrf_token %}
+        <label for="hobbies">Hobbies:</label>
+        <label>
+            <select name="hobby" class="form-select" multiple>
+               <option>Choose a hobby</option>
+                {% for hobby in form.hobbies %}
+                    <option value="{{ hobby.value }}">{{ hobby.choice_label }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
     </form>
+      <label for="born-place">Country:</label>
+        <label>
+          <select id="born-place" name="born-place">
+            {% for choice in form2.country.field.choices%}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% endfor %}
+          </select>
+        </label>
+
+      <label for="born-place">Department:</label>
+        <label>
+          <select id="born-place" name="born-place">
+            {% for choice in form2.state.field.choices%}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% endfor %}
+          </select>
+        </label>
+
+      <label for="born-place">City:</label>
+        <label>
+          <select id="born-place" name="born-place">
+            {% for choice in form2.city.field.choices%}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% endfor %}
+          </select>
+        </label>
+
+
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     </body>
 {% endblock %}

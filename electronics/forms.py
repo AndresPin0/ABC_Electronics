@@ -1,12 +1,6 @@
 from django import forms
 
 
-class ClientForm(forms.Form):
-    # clientID = forms.CharField(label='Client ID') this field should be auto generated
-    clientName = forms.CharField(label='Client Name')
-    clientEmail = forms.EmailField(label='Client Email')
-
-
 class ChildForm(forms.Form):
     birthDate = forms.DateField(label='Birth Date',
                                 widget=forms.DateInput(attrs={'type': 'date'}))
@@ -14,7 +8,7 @@ class ChildForm(forms.Form):
     GENDER_CHOICES = [
         ('male', 'Male'),
         ('female', 'Female'),
-        ('other', 'Other')
+        ('32+ types of gay', '32+ types of gay')
     ]
 
     gender = forms.ChoiceField(label='Gender', choices=GENDER_CHOICES)
@@ -25,23 +19,41 @@ class ChildForm(forms.Form):
     playVideoGames = forms.BooleanField(label='Play Video Games',
                                         required=False)
 
-    PLATFORM_CHOICES = ['PC',
-                        'PlayStation',
-                        'Xbox',
-                        'Nintendo',
-                        'Mobile']
-
+    PLATFORM_CHOICES = [
+        ('PC', 'PC'),
+        ('Xbox', 'Xbox'),
+        ('Playstation', 'Playstation'),
+        ('Nintendo', 'Nintendo'),
+        ('Mobile', 'Mobile'),
+        ('Other', 'Other')]
     platforms = forms.ChoiceField(label='Platform',
                                   choices=PLATFORM_CHOICES,
                                   required=False)
 
 
 class BirthPlaceForm(forms.Form):
-    country = forms.ChoiceField(label='Country')
+    COUNTRY_CHOICES = [
+        ('Colombia', 'Colombia'),
+    ]
 
-    state = forms.ChoiceField(label='State')
+    country = forms.ChoiceField(choices=COUNTRY_CHOICES,
+                                label='Country')
 
-    city = forms.ChoiceField(label='City')
+    COUNTRY_STATES_CHOICES = [
+        ('Valle del Cauca', 'Valle del Cauca'),
+    ]
+    state = forms.ChoiceField(choices=COUNTRY_STATES_CHOICES,
+                              label='State')
+
+    STATE_CITY_CHOICES = [('Cali', 'Cali'), ('Palmira', 'Palmira'), ('Buga', 'Buga'),
+                          ('Cartago', 'Cartago'), ('Tulua', 'Tulua'), ('Yumbo', 'Yumbo'),
+                          ('Jamundi', 'Jamundi'), ('Florida', 'Florida'), ('Pradera', 'Pradera'),
+                          ('Buenaventura', 'Buenaventura'), ('Candelaria', 'Candelaria'),
+                          ('Dagua', 'Dagua'), ('La Cumbre', 'La Cumbre'), ('El Cerrito', 'El Cerrito'),
+                          ('Ginebra', 'Ginebra'), ('Bugalagrande', 'Bugalagrande')]
+
+    city = forms.ChoiceField(choices=STATE_CITY_CHOICES,
+                             label='City')
 
 
 class LivingPlaceForm(forms.Form):
@@ -56,29 +68,29 @@ class LivingPlaceForm(forms.Form):
 
 class hobbiesForm(forms.Form):
     HOBBIES_CHOICES = [
-        'Reading', 'Writing', 'Drawing', 'Painting', 'Singing', 'Dancing',
-        'Playing an instrument', 'Listening to music', 'Watching movies',
-        'Watching series', 'Watching anime', 'Watching cartoons', 'Watching sports',
-        'Playing sports', 'Playing video games', 'Playing board games', 'Playing card games',
-        'Playing tabletop games', 'Playing role playing games', 'Playing with pets',
-        'Playing with children', 'Playing with friends', 'Playing with family',
-        'Playing with strangers', 'Playing with toys', 'Playing with dolls',
-        'Playing with action figures', 'Playing with legos', 'Playing with blocks']
+        ('Reading', 'Reading'), ('Writing', 'Writing'), ('Drawing', 'Drawing'),
+        ('Painting', 'Painting'), ('Singing', 'Singing'), ('Dancing', 'Dancing'),
+        ('Acting', 'Acting'), ('Photography', 'Photography'), ('Cooking', 'Cooking'),
+        ('Baking', 'Baking'), ('Gardening', 'Gardening'), ('Fishing', 'Fishing'),
+        ('Hiking', 'Hiking'), ('Camping', 'Camping'), ('Swimming', 'Swimming'),
+        ('Running', 'Running'), ('Cycling', 'Cycling'), ('Walking', 'Walking'),
+        ('Yoga', 'Yoga'), ('Meditation', 'Meditation'), ('Pilates', 'Pilates')
+    ]
 
-    hobbies = forms.ChoiceField(label='Hobbies',
-                                choices=HOBBIES_CHOICES, )
+    hobbies = forms.MultipleChoiceField(choices=HOBBIES_CHOICES,
+                                        widget=forms.SelectMultiple)
 
 
 class sportsForm(forms.Form):
     SPORTS_CHOICES = [
-        'Soccer', 'Basketball', 'Baseball', 'Football', 'Tennis', 'Volleyball',
-        'Badminton', 'Table Tennis', 'Golf', 'Swimming', 'Running', 'Cycling',
-        'Boxing', 'MMA', 'Wrestling', 'Weightlifting', 'Gymnastics', 'Skating',
-        'Skiing', 'Snowboarding', 'Surfing', 'Skateboarding', 'Rollerblading',
-        'Parkour', 'Rock Climbing', 'Hiking', 'Camping', 'Fishing', 'Hunting',
-        'Archery', 'Shooting', 'Darts', 'Billiards', 'Bowling', 'Dancing',
-        'Yoga', 'Pilates', 'Meditation', 'Tai Chi', 'Karate', 'Judo', 'Jiu Jitsu',
-        'Aikido', 'Kendo', 'Fencing', 'Sword Fighting', 'Horseback Riding']
+        ('Soccer', 'Soccer'), ('Basketball', 'Basketball'), ('Baseball', 'Baseball'),
+        ('Football', 'Football'), ('Volleyball', 'Volleyball'), ('Tennis', 'Tennis'),
+        ('Table Tennis', 'Table Tennis'), ('Badminton', 'Badminton'), ('Rugby', 'Rugby'),
+        ('Cricket', 'Cricket'), ('Golf', 'Golf'), ('Hockey', 'Hockey'), ('Lacrosse', 'Lacrosse'),
+        ('Water Polo', 'Water Polo'), ('Swimming', 'Swimming'), ('Track and Field', 'Track and Field'),
+        ('Cross Country', 'Cross Country'), ('Gymnastics', 'Gymnastics'), ('Cheerleading', 'Cheerleading'),
+        ('Dance', 'Dance'), ('Martial Arts', 'Martial Arts'), ('Boxing', 'Boxing')
+    ]
 
     sports = forms.ChoiceField(label='Sports',
                                choices=SPORTS_CHOICES)
@@ -86,8 +98,10 @@ class sportsForm(forms.Form):
 
 class maritalStatusForm(forms.Form):
     MARITAL_STATUS_CHOICES = [
-        'Single', 'Married', 'Divorced', 'Widowed', 'Separated', 'In a relationship',
-        'Engaged', 'It\'s complicated', 'In an open relationship', 'In a civil union']
+        ('Single', 'Single'), ('Married', 'Married'), ('Divorced', 'Divorced'),
+        ('Widowed', 'Widowed'), ('Separated', 'Separated'), ('In a relationship', 'In a relationship'),
+        ('Engaged', 'Engaged'), ('It\'s complicated', 'It\'s complicated'),
+        ('In an open relationship', 'In an open relationship')]
 
     maritalStatus = forms.ChoiceField(label='Marital Status',
                                       choices=MARITAL_STATUS_CHOICES)
@@ -99,9 +113,11 @@ class maritalStatusForm(forms.Form):
 
 class categoryInterestForm(forms.Form):
     CATEGORY_INTEREST_CHOICES = [
-        'Electronics', 'Clothing', 'Food', 'Books', 'Movies', 'Music', 'Games',
-        'Sports', 'Travel', 'Health', 'Beauty', 'Home', 'Garden', 'Pets', 'Toys',
-        'Baby', 'Kids', 'Automotive', 'Tools', 'Industrial', 'Handmade', 'Jewelry']
+        ('Electronics', 'Electronics'), ('Clothing', 'Clothing'), ('Food', 'Food'),
+        ('Books', 'Books'), ('Movies', 'Movies'), ('Music', 'Music'), ('Games', 'Games'),
+        ('Sports', 'Sports'), ('Travel', 'Travel'), ('Health', 'Health'), ('Beauty', 'Beauty'),
+        ('Home', 'Home'), ('Garden', 'Garden'), ('Pets', 'Pets'), ('Toys', 'Toys'),
+        ('Baby', 'Baby'), ('Kids', 'Kids'), ('Automotive', 'Automotive'), ('Tools', 'Tools')]
 
     categoryInterest = forms.ChoiceField(label='Category Interest',
                                          choices=CATEGORY_INTEREST_CHOICES)

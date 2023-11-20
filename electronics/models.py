@@ -34,15 +34,15 @@ class Product(models.Model):
                                decimal_places=2,
                                null=False,
                                blank=False)
-    
+
     selling_price = models.DecimalField(max_digits=100,
                                         decimal_places=2,
                                         null=False,
                                         blank=False)
-    
+
     referential_image_path = models.CharField(max_length=1000,
                                               null=True)
-    
+
     def __str__(self) -> str:
         return f'{self.product_id} - {self.description}'
 
@@ -114,3 +114,4 @@ class OrderDetail(models.Model):
 
     def __str__(self) -> str:
         return f'{self.order_number} - {self.product_id}'
+
