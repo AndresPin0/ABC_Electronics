@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
 class CategoryProduct(models.Model):
     code = models.CharField(primary_key=True,
                             max_length=10,
