@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'abc_electronics.urls'
+ROOT_URLCONF = 'ABC_Electronics.urls'
 
 TEMPLATES = [
     {
@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'abc_electronics.wsgi.application'
+WSGI_APPLICATION = 'ABC_Electronics.wsgi.application'
 
 
 # Database
