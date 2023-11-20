@@ -3,7 +3,6 @@ from pymongo.server_api import ServerApi
 import djongo
 
 
-
 """
 Django settings for abc_electronics project.
 
@@ -18,9 +17,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import djongo
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -33,17 +34,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
-
 # Application definition
 
 INSTALLED_APPS = [
+    'electronics',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'electronics',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'ABC_Electronics.urls'
+ROOT_URLCONF = 'abc_electronics.urls'
 
 TEMPLATES = [
     {
@@ -76,58 +76,30 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ABC_Electronics.wsgi.application'
+WSGI_APPLICATION = 'abc_electronics.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# uri = "mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/?retryWrites=true&w=majority"
-
-# client = MongoClient(uri, server_api=ServerApi('1'))
-
-# try:
-#     client.admin.command('ping')
-#     print("Pinged your deployment. You successfully connected to MongoDB!")
-# except Exception as e:
-#     print(e)
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'additional_information',
-#         'HOST': 'mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/',
-#         'PORT': 27017,
-#     }
-# }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'additional_information',
-#         'ENFORCE_SCHEMA': False,  # Puedes ajustar esto según tus necesidades
-#         'CLIENT': {
-#             'host': 'abcelectronics.nr1t8en.mongodb.net',
-#             'username': 'abc',
-#             'password': 'anc',
-#             'authSource': 'admin',
-#             'authMechanism': 'SCRAM-SHA-1',
-#         },
-#     }
-# }
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'abc_orders_rel_db',
-        'USER': 'yulukeitor',
-        'PASSWORD': 't5A0uCxhzZnr',
-        'HOST': 'ep-throbbing-bird-49216726.us-east-2.aws.neon.tech',
-        'PORT': '5432',  # Puerto por defecto de PostgreSQL
-    }
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'additional_information',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/'
+            }
+        },
+        'postgresql': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'abc_orders_rel_db',
+            'USER': 'yulukeitor',
+            'PASSWORD': 't5A0uCxhzZnr',
+            'HOST': 'ep-throbbing-bird-49216726.us-east-2.aws.neon.tech',
+            'PORT': '5432',
+        }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -147,7 +119,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -158,7 +129,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
