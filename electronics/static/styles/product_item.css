@@ -1,0 +1,12 @@
+/* Estilo para el contenedor del producto */
+.product-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease; /* Agrega una transición para el efecto hover */
+}
+
+/* Estilo para el contenedor del producto cuando el mouse está encima */
+.product-container:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Cambia la sombra cuando el mouse está encima */
+}
