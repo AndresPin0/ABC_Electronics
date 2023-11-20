@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'abc_electronics.urls'
+ROOT_URLCONF = 'ABC_Electronics.urls'
 
 TEMPLATES = [
     {
@@ -76,22 +76,22 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'abc_electronics.wsgi.application'
+WSGI_APPLICATION = 'ABC_Electronics.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+        # 'default': {
+        #     'ENGINE': 'djongo',
+        #     'NAME': 'additional_information',
+        #     'ENFORCE_SCHEMA': False,
+        #     'CLIENT': {
+        #         'host': 'mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/'
+        #     }
+        # },
         'default': {
-            'ENGINE': 'djongo',
-            'NAME': 'additional_information',
-            'ENFORCE_SCHEMA': False,
-            'CLIENT': {
-                'host': 'mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/'
-            }
-        },
-        'postgresql': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'abc_orders_rel_db',
             'USER': 'yulukeitor',
