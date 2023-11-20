@@ -38,16 +38,7 @@
             {% endfor %}
           </select>
         </label>
-
-    {% for option in form.options %}
-7        <li>
-8          <label for="{{ option.id_for_label }}">
-9            {{ option.choice_label }}
-10            {{ option }}
-11          </label>
-12        </li>
-13      {% endfor %}
-
+    
     <form method="post" action="registerAdditionalInfo/">
         {% csrf_token %}
         <label for="hobbies">Hobbies:</label>
