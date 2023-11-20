@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_item.css' %}">
+</head>
+<body>
+
+    <h1>Lista de Productos</h1>
+
+    <div>
+        <form method="post" action="/productPage/" id="product-form">
+            {% csrf_token %}
+            
+            {% for product in products %}
+                <a class="product-link" data-product-id="{{ product.product_id }}" style="text-decoration: none; color: #333;" href="#">
+                    <div class="product-container">
+
+                        <img src="{% static product.referential_image_path %}" alt="{{ product.description }}" style="max-width: 100px; max-height: 100px;">
+                        <h3>{{ product.description }}</h3>
+                        <p>Precio: ${{ product.selling_price }}</p>
+                    
+                    </div>
+                </a>
+            {% endfor %}
+
+            <input type="hidden" name="selected-product-id" id="selected-product-id" value="">
+
+        </form>
+    </div>
+
+    <script src="{% static 'scripts/select_product.js' %}"></script>
+</body>
+</html>
+
+{% endblock content %}
