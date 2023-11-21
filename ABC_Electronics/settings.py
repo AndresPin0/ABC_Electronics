@@ -1,6 +1,5 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-import djongo
 
 """
 Django settings for abc_electronics project.
@@ -15,8 +14,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
-import djongo
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -87,15 +84,15 @@ DATABASES = {
         'PASSWORD': 't5A0uCxhzZnr',
         'HOST': 'ep-throbbing-bird-49216726.us-east-2.aws.neon.tech',
         'PORT': '5432',
-    },
-    'mongo': {
-        'ENGINE': 'djongo',
-        'NAME': 'additional_information',
-        'ENFORCE_SCHEMA': False,
-        'CLIENT': {
-            'host': 'mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/'
-        }
     }
+    # 'mongo': {
+    #     'ENGINE': 'djongo',
+    #     'NAME': 'additional_information',
+    #     'ENFORCE_SCHEMA': False,
+    #     'CLIENT': {
+    #         'host': 'mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/'
+    #     }
+    # }
 }
 
 # Password validation

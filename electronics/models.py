@@ -1,5 +1,7 @@
 from django.db import models
 
+from db_connection import db
+
 
 class CategoryProduct(models.Model):
     code = models.CharField(primary_key=True,
@@ -273,3 +275,6 @@ class MoreInformation(models.Model):
     class Meta:
         db_table = 'clients'
         db_tablespace = 'additional_information'
+
+        
+additional_info_collection = db['clients']
