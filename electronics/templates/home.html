@@ -13,29 +13,32 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles/product_item.css' %}">
 </head>
 <body>
+    <div class="d-flex justify-content-center">
+        <h1>Lista de Productos</h1>
+    </div>
 
-    <h1>Lista de Productos</h1>
-
-    <div>
+    <div class="container-fluid">
         <form method="post" action="/productPage/" id="product-form">
             {% csrf_token %}
-            
-            {% for product in products %}
-                <a class="product-link" data-product-id="{{ product.product_id }}" style="text-decoration: none; color: #333;" href="#">
-                    <div class="product-container">
-
-                        <img src="{% static product.referential_image_path %}" alt="{{ product.description }}" style="max-width: 100px; max-height: 100px;">
-                        <h3>{{ product.description }}</h3>
-                        <p>Precio: ${{ product.selling_price }}</p>
-                    
+    
+            <div class="row justify-content-center">
+                {% for product in products %}
+                    <div class="col-lg-5 mb-4">
+                        <a class="product-link" data-product-id="{{ product.product_id }}" style="text-decoration: none; color: #333;" href="#">
+                            <div class="product-container d-flex flex-column align-items-center">
+                                <img src="{% static product.referential_image_path %}" alt="{{ product.description }}" class="img-fluid">
+                                <h3 class="text-center">{{ product.description }}</h3>
+                                <h6 class="text-center">Precio: ${{ product.selling_price }}</h6>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            {% endfor %}
-
+                {% endfor %}
+            </div>
+    
             <input type="hidden" name="selected-product-id" id="selected-product-id" value="">
-
         </form>
     </div>
+    
 
     <script src="{% static 'scripts/select_product.js' %}"></script>
 </body>

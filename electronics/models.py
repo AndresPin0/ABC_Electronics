@@ -10,6 +10,10 @@ class CategoryProduct(models.Model):
     description = models.CharField(max_length=100,
                                    null=False,
                                    blank=False)
+    
+    class Meta:
+        db_table = 'electronics_categoryproduct'
+        db_tablespace = 'abc_orders_rel_db'
 
     def __str__(self) -> str:
         return f'{self.code} - {self.description}'
@@ -43,6 +47,10 @@ class Product(models.Model):
     referential_image_path = models.CharField(max_length=1000,
                                               null=True)
 
+    class Meta:
+        db_table = 'electronics_product'
+        db_tablespace = 'abc_orders_rel_db'
+    
     def __str__(self) -> str:
         return f'{self.product_id} - {self.description}'
 
@@ -79,15 +87,17 @@ class Customer(models.Model):
     cell_phone = models.CharField(max_length=10,
                                   null=False,
                                   blank=False)
+    
+    class Meta:
+        db_table = 'electronics_customer'
+        db_tablespace = 'abc_orders_rel_db'
 
     def __str__(self) -> str:
         return f'{self.customer_id} - {self.firstname} {self.lastname}'
 
 
 class Order(models.Model):
-    order_number = models.IntegerField(primary_key=True,
-                                       null=False,
-                                       blank=False)
+    order_number = models.AutoField(primary_key=True)
 
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
@@ -99,6 +109,10 @@ class Order(models.Model):
 
     payment_date = models.DateTimeField(null=False,
                                         blank=False)
+    
+    class Meta:
+        db_table = 'electronics_order'
+        db_tablespace = 'abc_orders_rel_db'
 
     def __str__(self) -> str:
         return f'{self.order_number} - {self.customer_id}'
@@ -108,9 +122,11 @@ class OrderDetail(models.Model):
     order_number = models.ForeignKey(Order, on_delete=models.CASCADE)
 
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-
+    
     class Meta:
         unique_together = ('order_number', 'product_id')
+        db_table = 'electronics_orderdetail'
+        db_tablespace = 'abc_orders_rel_db'
 
     def __str__(self) -> str:
         return f'{self.order_number} - {self.product_id}'

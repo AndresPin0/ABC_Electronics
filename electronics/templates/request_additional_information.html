@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos</title>
+
+    {% load static %}
+</head>
+<body>
+
+    <div class="d-flex justify-content-center">
+        <h1>Solicitud de información</h1>
+    </div>
+
+    <div class="card" style="margin-left: 20px; margin-right: 20px;">
+        <div class="card-body">
+            <div style="text-align: center; margin: 50px;">
+
+                <h3>¿Desea dar más información acerca de usted a cambio de un jugoso descuento?</h3>
+
+                <div style="margin-top: 20px;">
+                    <form method="post" action="/manageRequestInfoAnswer/">
+                        {% csrf_token %}
+
+                        <button class="btn btn-success" type="submit" name="answer" value="Sí" style="min-width: 50px;">Sí</button>
+                        <button class="btn btn-danger" type="submit" name="answer" value="No" style="min-width: 50px;">No</button>
+
+                        <input type="hidden" name="selected-product-id" id="selected-product-id" value="{{ product_id }}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+{% endblock content %}

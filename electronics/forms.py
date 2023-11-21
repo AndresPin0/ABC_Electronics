@@ -6,3 +6,4 @@ class MoreInformationForms(forms.ModelForm):
     class Meta:
         model = MoreInformation
         fields = '__all__'
+
