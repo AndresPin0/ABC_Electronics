@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_item.css' %}">
+</head>
+<body>
+    <div class="d-flex justify-content-center">
+        <h1>Lista de Productos</h1>
+    </div>
+
+    <div class="container-fluid">
+        <form method="post" action="/productPage/" id="product-form">
+            {% csrf_token %}
+    
+            <div class="row justify-content-center">
+                {% for product in products %}
+                    <div class="col-lg-4 mb-4">
+                        <a class="product-link" data-product-id="{{ product.product_id }}" style="text-decoration: none; color: #333;" href="#">
+                            <div class="product-container d-flex flex-column align-items-center">
+                                <img src="{% static product.referential_image_path %}" alt="{{ product.description }}" class="img-fluid">
+                                <h3 class="text-center">{{ product.description }}</h3>
+                                <h6 class="text-center">Precio: ${{ product.selling_price }}</h6>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+    
+            <input type="hidden" name="selected-product-id" id="selected-product-id" value="">
+        </form>
+    </div>
+    
+
+    <script src="{% static 'scripts/select_product.js' %}"></script>
+</body>
+</html>
+
+{% endblock content %}

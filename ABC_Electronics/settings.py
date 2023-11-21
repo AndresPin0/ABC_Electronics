@@ -1,3 +1,6 @@
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
 """
 Django settings for abc_electronics project.
 
@@ -15,7 +18,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -25,20 +27,21 @@ SECRET_KEY = 'django-insecure-2mz&ttt#f-3$b#vdpyz0vl5)x=yb591$gz3wm3mhmri8uj=wx5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'electronics',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'electronics',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'abc_electronics.urls'
+ROOT_URLCONF = 'ABC_Electronics.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'abc_electronics.wsgi.application'
+WSGI_APPLICATION = 'ABC_Electronics.wsgi.application'
 
 
 # Database
@@ -76,11 +79,22 @@ WSGI_APPLICATION = 'abc_electronics.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'abc_orders_rel_db',
+        'USER': 'yulukeitor',
+        'PASSWORD': 't5A0uCxhzZnr',
+        'HOST': 'ep-throbbing-bird-49216726.us-east-2.aws.neon.tech',
+        'PORT': '5432',
     }
+    # 'mongo': {
+    #     'ENGINE': 'djongo',
+    #     'NAME': 'additional_information',
+    #     'ENFORCE_SCHEMA': False,
+    #     'CLIENT': {
+    #         'host': 'mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/'
+    #     }
+    # }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -100,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -111,7 +124,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
