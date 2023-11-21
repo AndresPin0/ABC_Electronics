@@ -117,6 +117,7 @@ class OrderDetail(models.Model):
 
 
 class MoreInformation(models.Model):
+    id = models.BigAutoField(primary_key=True)
     GENDER_CHOICES = [
         ('male', 'Male'),
         ('female', 'Female'),
@@ -212,4 +213,3 @@ class MoreInformation(models.Model):
 
     class Meta:
         db_table = 'clients'
-        db_tablespace = 'additional_information'
