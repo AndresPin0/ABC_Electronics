@@ -12,7 +12,7 @@ class CategoryProduct(models.Model):
     description = models.CharField(max_length=100,
                                    null=False,
                                    blank=False)
-    
+
     class Meta:
         db_table = 'electronics_categoryproduct'
         db_tablespace = 'abc_orders_rel_db'
@@ -48,11 +48,11 @@ class Product(models.Model):
 
     referential_image_path = models.CharField(max_length=1000,
                                               null=True)
-    
+
     class Meta:
         db_table = 'electronics_product'
         db_tablespace = 'abc_orders_rel_db'
-    
+
     def __str__(self) -> str:
         return f'{self.product_id} - {self.description}'
 
@@ -89,7 +89,7 @@ class Customer(models.Model):
     cell_phone = models.CharField(max_length=10,
                                   null=False,
                                   blank=False)
-    
+
     class Meta:
         db_table = 'electronics_customer'
         db_tablespace = 'abc_orders_rel_db'
@@ -111,7 +111,7 @@ class Order(models.Model):
 
     payment_date = models.DateTimeField(null=False,
                                         blank=False)
-    
+
     class Meta:
         db_table = 'electronics_order'
         db_tablespace = 'abc_orders_rel_db'
@@ -124,7 +124,7 @@ class OrderDetail(models.Model):
     order_number = models.ForeignKey(Order, on_delete=models.CASCADE)
 
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    
+
     class Meta:
         unique_together = ('order_number', 'product_id')
         db_table = 'electronics_orderdetail'
@@ -135,6 +135,7 @@ class OrderDetail(models.Model):
 
 
 class MoreInformation(models.Model):
+    id = models.BigAutoField(primary_key=True)
     GENDER_CHOICES = [
         ('male', 'Male'),
         ('female', 'Female'),
@@ -205,92 +206,91 @@ class MoreInformation(models.Model):
         ('Home', 'Home'), ('Garden', 'Garden'), ('Pets', 'Pets'), ('Toys', 'Toys'),
         ('Baby', 'Baby'), ('Kids', 'Kids'), ('Automotive', 'Automotive'), ('Tools', 'Tools')]
 
-    birth_date = models.DateTimeField(null=False, 
+    birth_date = models.DateTimeField(null=False,
                                       blank=False)
 
-    gender = models.CharField(max_length=30, 
-                              choices=GENDER_CHOICES, 
-                              null=False, 
+    gender = models.CharField(max_length=30,
+                              choices=GENDER_CHOICES,
+                              null=False,
                               blank=False)
 
-    studying = models.BooleanField(null=False, 
+    studying = models.BooleanField(null=False,
                                    blank=False)
 
-    play_video_games = models.BooleanField(null=False, 
+    play_video_games = models.BooleanField(null=False,
                                            blank=False)
 
-    platform = models.CharField(max_length=30, 
-                                choices=PLATFORM_CHOICES, 
-                                null=False, 
+    platform = models.CharField(max_length=30,
+                                choices=PLATFORM_CHOICES,
+                                null=False,
                                 blank=False)
 
-    country_birth = models.CharField(choices=COUNTRY_CHOICES, 
-                                     max_length=100, 
-                                     default='Colombia', 
+    country_birth = models.CharField(choices=COUNTRY_CHOICES,
+                                     max_length=100,
+                                     default='Colombia',
                                      null=False,
                                      blank=False)
 
-    state_birth = models.CharField(choices=COUNTRY_STATES_CHOICES, 
-                                   max_length=100, 
+    state_birth = models.CharField(choices=COUNTRY_STATES_CHOICES,
+                                   max_length=100,
                                    default='Valle del Cauca',
                                    null=False, blank=False)
 
-    city_birth = models.CharField(choices=STATE_CITY_CHOICES, 
-                                  max_length=100, 
-                                  null=False, 
+    city_birth = models.CharField(choices=STATE_CITY_CHOICES,
+                                  max_length=100,
+                                  null=False,
                                   blank=False)
 
-    country_actual = models.CharField(choices=COUNTRY_CHOICES, 
-                                      max_length=100, 
-                                      default='Colombia', 
+    country_actual = models.CharField(choices=COUNTRY_CHOICES,
+                                      max_length=100,
+                                      default='Colombia',
                                       null=False,
                                       blank=False)
 
-    state_actual = models.CharField(choices=COUNTRY_STATES_CHOICES, 
-                                    max_length=100, 
+    state_actual = models.CharField(choices=COUNTRY_STATES_CHOICES,
+                                    max_length=100,
                                     default='Valle del Cauca',
                                     null=False, blank=False)
 
-    city_actual = models.CharField(choices=STATE_CITY_CHOICES, 
-                                   max_length=100, 
-                                   null=False, 
+    city_actual = models.CharField(choices=STATE_CITY_CHOICES,
+                                   max_length=100,
+                                   null=False,
                                    blank=False)
 
-    postalCode = models.CharField(choices=POSTAL_CODE_CHOICES, 
-                                  max_length=100, 
-                                  null=False, 
+    postalCode = models.CharField(choices=POSTAL_CODE_CHOICES,
+                                  max_length=100,
+                                  null=False,
                                   blank=False)
 
-    hobbies = models.CharField(choices=HOBBIES_CHOICES, 
+    hobbies = models.CharField(choices=HOBBIES_CHOICES,
                                max_length=100,
-                                null=False, 
-                                blank=False)
+                               null=False,
+                               blank=False)
 
-    sports = models.CharField(choices=SPORTS_CHOICES, 
-                              max_length=100, 
-                              null=False, 
+    sports = models.CharField(choices=SPORTS_CHOICES,
+                              max_length=100,
+                              null=False,
                               blank=False)
 
-    maritalStatus = models.CharField(choices=MARITAL_STATUS_CHOICES, 
-                                     max_length=100, 
-                                     null=False, 
+    maritalStatus = models.CharField(choices=MARITAL_STATUS_CHOICES,
+                                     max_length=100,
+                                     null=False,
                                      blank=False)
 
-    statusDateChanged = models.DateTimeField(null=False, 
+    statusDateChanged = models.DateTimeField(null=False,
                                              blank=False)
 
-    coupleName = models.CharField(max_length=100, 
-                                  null=False, 
+    coupleName = models.CharField(max_length=100,
+                                  null=False,
                                   blank=False)
 
-    categoryInterest = models.CharField(choices=CATEGORY_INTEREST_CHOICES, 
-                                        max_length=100, 
-                                        null=False, 
+    categoryInterest = models.CharField(choices=CATEGORY_INTEREST_CHOICES,
+                                        max_length=100,
+                                        null=False,
                                         blank=False)
 
     class Meta:
         db_table = 'clients'
-        db_tablespace = 'additional_information'
 
-        
+
 additional_info_collection = db['clients']
