@@ -5,84 +5,161 @@
 {% block content %}
     <head>
     {% load static %}
-     <h2>All Forms</h2>
+     <h2>All Forms</h2><title></title>
     </head>
     <body>
 
-    <form method="post" action="registerAdditionalInfo/">
-      {% csrf_token %}
+    <form method="POST" action="{% url 'registerAdditionalInfo' %}" >
+              {% csrf_token %}
 
-        <label for="birthDate">Birth Date:</label>
-            <input type="date" id="birthDate" name="birthDate" required>
+                    <label for="birthDate">Birth Date:</label>
+                        <input type="date" id="birthDate" name="birthDate" required>
 
-       <label for="gender">Gender:</label>
-        <label>
-          <select id="gender" name="gender">
-            {% for choice in form1.gender.field.choices%}
-                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-            {% endfor %}
-          </select>
-        </label>
+                   <label for="gender">Gender:</label>
+                    <label>
+                      <select id="gender" name="gender">
+                      <option>Choose the gender</option>
+                        {% for choice in form1.gender.field.choices%}
+                            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                        {% endfor %}
+                      </select>
+                    </label>
 
-        <label for="studying">Studying:</label>
-      <input type="checkbox" id="studying" name="studying">
+                    <label for="studying">Studying:</label>
+                  <input type="checkbox" id="studying" name="studying">
 
-      <label for="playVideoGames">Play Video Games:</label>
-      <input type="checkbox" id="playVideoGames" name="playVideoGames">
+                  <label for="playVideoGames">Play Video Games:</label>
+                  <input type="checkbox" id="playVideoGames" name="playVideoGames">
 
-      <label for="platform">Platform:</label>
-        <label>
-          <select id="platform" name="platform">
-            {% for choice in form1.platforms.field.choices %}
-                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-            {% endfor %}
-          </select>
-        </label>
-    
-    <form method="post" action="registerAdditionalInfo/">
-        {% csrf_token %}
-        <label for="hobbies">Hobbies:</label>
-        <label>
-            <select name="hobby" class="form-select" multiple>
-               <option>Choose a hobby</option>
-                {% for hobby in form.hobbies %}
-                    <option value="{{ hobby.value }}">{{ hobby.choice_label }}</option>
-                {% endfor %}
-            </select>
-        </label>
+                  <label for="platform">Platform:</label>
+                    <label>
+                      <select id="platform" name="platform">
+                          <option>Choose the platform</option>
+                        {% for choice in form1.platform.field.choices %}
+                            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                        {% endfor %}
+                      </select>
+                </label>
 
+
+              <label for="born-place">Country:</label>
+                <label>
+                  <select id="born-place" name="country">
+                      <option>Choose your current Country</option>
+                    {% for choice in form2.country.field.choices%}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                  </select>
+                </label>
+
+              <label for="born-place">Department:</label>
+                <label>
+                  <select id="born-place" name="state">
+                      <option>Choose your current Department</option>
+                    {% for choice in form2.state.field.choices%}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                  </select>
+                </label>
+
+              <label for="born-place">City:</label>
+                <label>
+                  <select id="born-place" name="city">
+                      <option>Choose your current City</option>
+                    {% for choice in form2.city.field.choices%}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                  </select>
+                </label>
+
+
+              <label for="living-place">Country:</label>
+                <label>
+                  <select id="living-place" name="currentCountry">
+                      <option>Choose your current Country</option>
+                    {% for choice in form3.country.field.choices%}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                  </select>
+                </label>
+
+              <label for="living-place">Department:</label>
+                <label>
+                  <select id="living-place" name="CurrentState">
+                      <option>Choose your current Department</option>
+                    {% for choice in form3.state.field.choices%}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                  </select>
+                </label>
+
+              <label for="living-place">City:</label>
+                <label>
+                  <select id="living-place" name="CurrentCity">
+                  <option>Choose your current city</option>
+                    {% for choice in form3.city.field.choices%}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                  </select>
+                </label>
+
+              <label for="living-place">Postal Code:</label>
+                <label>
+                  <select id="living-place" name="postalCode">
+                  <option>Choose your postal code</option>
+                    {% for choice in form3.postalCode.field.choices%}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                  </select>
+                </label>
+
+                <label for="hobbies">Hobbies:</label>
+                <label>
+                    <select name="hobby">
+                       <option>Choose a hobby</option>
+                        {% for hobby in form.hobbies.field.choices %}
+                            <option value="{{ hobby.0 }}">{{ hobby.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+
+              <label for="sports">Sports:</label>
+                        <label>
+                            <select name="sports">
+                               <option>Choose a sport</option>
+                                {% for sport in form4.sports.field.choices %}
+                                    <option value="{{ sport.0 }}">{{ sport.1 }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+
+                    <label for="marital">Marital status:</label>
+                    <label>
+                        <select name="marital">
+                           <option>Choose your marital status</option>
+                            {% for hobby in form5.maritalStatus.field.choices %}
+                                <option value="{{ hobby.0 }}">{{ hobby.1 }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+
+                    <label for="marital">Marital status date changed:</label>
+                    <label for="maritalDate"> </label><input type="date" id="maritalDate" name="maritalDate" required>
+
+
+                    <label for="coupleName">Couple name:</label>
+                    <input type="text" id="coupleName" name="coupleName">
+
+                    <label for="category">Category:</label>
+                        <label>
+                          <select id="category" name="category">
+                          <option>Choose a category</option>
+                            {% for choice in form6.categoryInterest.field.choices%}
+                                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                            {% endfor %}
+                          </select>
+                        </label>
+        <button class="btn btn-primary" type="submit">Submit</button>
     </form>
-      <label for="born-place">Country:</label>
-        <label>
-          <select id="born-place" name="born-place">
-            {% for choice in form2.country.field.choices%}
-                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-            {% endfor %}
-          </select>
-        </label>
-
-      <label for="born-place">Department:</label>
-        <label>
-          <select id="born-place" name="born-place">
-            {% for choice in form2.state.field.choices%}
-                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-            {% endfor %}
-          </select>
-        </label>
-
-      <label for="born-place">City:</label>
-        <label>
-          <select id="born-place" name="born-place">
-            {% for choice in form2.city.field.choices%}
-                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-            {% endfor %}
-          </select>
-        </label>
-
-
-    </form>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     </body>
 {% endblock %}
