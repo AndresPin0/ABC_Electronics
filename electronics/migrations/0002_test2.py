@@ -5,14 +5,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    initial = True
-
     dependencies = [
+        ('electronics', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='test',
+            name='test2',
             fields=[
                 ('t', models.CharField(max_length=100, primary_key=True, serialize=False)),
             ],
