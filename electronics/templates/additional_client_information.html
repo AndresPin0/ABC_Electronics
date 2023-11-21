@@ -3,163 +3,273 @@
 {% block title %}All Forms{% endblock %}
 
 {% block content %}
-    <head>
+<head>
     {% load static %}
-     <h2>All Forms</h2><title></title>
-    </head>
-    <body>
+    <title></title>
+</head>
+<body>
 
-    <form method="POST" action="{% url 'registerAdditionalInfo' %}" >
-              {% csrf_token %}
+    <div class="d-flex justify-content-center">
+        <h1>Registrar información adicional</h1>
+    </div>
 
-                    <label for="birthDate">Birth Date:</label>
-                        <input type="date" id="birthDate" name="birthDate" required>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mt-4 mx-auto">
+                <div class="card my-auto">
+                    <div class="card-body">
+                        <form method="POST" action="{% url 'registerAdditionalInfo' %}" >
+                        {% csrf_token %}
 
-                   <label for="gender">Gender:</label>
-                    <label>
-                      <select id="gender" name="gender">
-                      <option>Choose the gender</option>
-                        {% for choice in form.gender.field.choices%}
-                            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                        {% endfor %}
-                      </select>
-                    </label>
+                            <!-- <div class="mt-3 form-floating mb-3">
+                                <input type="form-checkbox" id="studying" name="studying" required>
+                                <label class="form-label">Studying</label>
+                                <div class="invalid-feedback">
+                            </div>
 
-                    <label for="studying">Studying:</label>
-                  <input type="checkbox" id="studying" name="studying">
+                            <div class="mt-3 form-floating mb-3">
+                                <label for="playVideoGames">Play Video Games:</label>
+                                <input type="checkbox" id="playVideoGames" name="playVideoGames">
+                            </div> -->
 
-                  <label for="playVideoGames">Play Video Games:</label>
-                  <input type="checkbox" id="playVideoGames" name="playVideoGames">
+                            <!-- <div class="mt-3 form-floating mb-3">
+                                <select class="form-select" id="platform" name="platform">
+                                    <option>Elige una plataforma</option>
 
-                  <label for="platform">Platform:</label>
-                    <label>
-                      <select id="platform" name="platform">
-                          <option>Choose the platform</option>
-                        {% for choice in form.platform.field.choices %}
-                            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                        {% endfor %}
-                      </select>
-                </label>
+                                    {% for choice in form.platform.field.choices %}
+                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                    {% endfor %}
 
+                                </select>
+                                <label class="form-label">Plataforma</label>
+                                <div class="invalid-feedback">
+                            </div> -->
 
-              <label for="born-place">Country:</label>
-                <label>
-                  <select id="born-place" name="country">
-                      <option>Choose your current Country</option>
-                    {% for choice in form.country_birth.field.choices%}
-                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                    {% endfor %}
-                  </select>
-                </label>
+                            <div class="mt-3 form-floating mb-3">
+                                <select class="form-select" id="born-country" name="born-country" required>
+                                    <option>Elige tu país de nacimiento</option>
 
-              <label for="born-place">Department:</label>
-                <label>
-                  <select id="born-place" name="state">
-                      <option>Choose your current Department</option>
-                    {% for choice in form.state_birth.field.choices%}
-                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                    {% endfor %}
-                  </select>
-                </label>
+                                    {% for choice in form.country_birth.field.choices%}
+                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                    {% endfor %}
 
-              <label for="born-place">City:</label>
-                <label>
-                  <select id="born-place" name="city">
-                      <option>Choose your current City</option>
-                    {% for choice in form.city_birth.field.choices%}
-                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                    {% endfor %}
-                  </select>
-                </label>
+                                </select>
+
+                                <label class="form-label">País de nacimiento</label>
+                                <div class="invalid-feedback">
+                            </div>
 
 
-              <label for="living-place">Country:</label>
-                <label>
-                  <select id="living-place" name="currentCountry">
-                      <option>Choose your current Country</option>
-                    {% for choice in form.country_actual.field.choices%}
-                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                    {% endfor %}
-                  </select>
-                </label>
+                            <div class="mt-3 form-floating mb-3">
+                                <select class="form-select" id="born-state" name="born-state" required>
+                                    <option>Elige tu departamento de nacimiento</option>
 
-              <label for="living-place">Department:</label>
-                <label>
-                  <select id="living-place" name="CurrentState">
-                      <option>Choose your current Department</option>
-                    {% for choice in form.state_actual.field.choices%}
-                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                    {% endfor %}
-                  </select>
-                </label>
+                                    {% for choice in form.state_birth.field.choices%}
+                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                    {% endfor %}
 
-              <label for="living-place">City:</label>
-                <label>
-                  <select id="living-place" name="CurrentCity">
-                  <option>Choose your current city</option>
-                    {% for choice in form.city_actual.field.choices%}
-                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                    {% endfor %}
-                  </select>
-                </label>
+                                </select>
+                                
+                                <label class="form-label">Departamento de nacimiento</label>
+                                <div class="invalid-feedback">
+                            </div>
 
-              <label for="living-place">Postal Code:</label>
-                <label>
-                  <select id="living-place" name="postalCode">
-                  <option>Choose your postal code</option>
-                    {% for choice in form3.postalCode.field.choices%}
-                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                    {% endfor %}
-                  </select>
-                </label>
+                            <div class="mt-3 form-floating mb-3">
+                                <select class="form-select" id="born-city" name="born-city" required>
+                                    <option>Elige tu ciudad de nacimiento</option>
 
-                <label for="hobbies">Hobbies:</label>
-                <label>
-                    <select name="hobby">
-                       <option>Choose a hobby</option>
-                        {% for hobby in form.hobbies.field.choices %}
-                            <option value="{{ hobby.0 }}">{{ hobby.1 }}</option>
-                        {% endfor %}
-                    </select>
-                </label>
+                                    {% for choice in form.city_birth.field.choices%}
+                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                    {% endfor %}
 
-              <label for="sports">Sports:</label>
-                        <label>
-                            <select name="sports">
-                               <option>Choose a sport</option>
-                                {% for sport in form.sports.field.choices %}
-                                    <option value="{{ sport.0 }}">{{ sport.1 }}</option>
-                                {% endfor %}
-                            </select>
-                        </label>
+                                </select>
 
-                    <label for="marital">Marital status:</label>
-                    <label>
-                        <select name="marital">
-                           <option>Choose your marital status</option>
-                            {% for hobby in form.maritalStatus.field.choices %}
-                                <option value="{{ hobby.0 }}">{{ hobby.1 }}</option>
-                            {% endfor %}
-                        </select>
-                    </label>
+                                <label class="form-label">Ciudad de nacimiento</label>
+                                <div class="invalid-feedback">
+                            </div>
 
-                    <label for="marital">Marital status date changed:</label>
-                    <label for="maritalDate"> </label><input type="date" id="maritalDate" name="maritalDate" required>
+                            <div class="mt-3 form-floating mb-3">
+                                <select class="form-select" id="living-country" name="living-country" required>
+                                    <option>Elige tu país de residencia</option>
 
+                                    {% for choice in form.country_actual.field.choices%}
+                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                    {% endfor %}
 
-                    <label for="coupleName">Couple name:</label>
-                    <input type="text" id="coupleName" name="coupleName">
+                                </select>
 
-                    <label for="category">Category:</label>
-                        <label>
-                          <select id="category" name="category">
-                          <option>Choose a category</option>
-                            {% for choice in form.categoryInterest.field.choices%}
-                                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                            {% endfor %}
-                          </select>
-                        </label>
-        <button class="btn btn-primary" type="submit">Submit</button>
-    </form>
-    </body>
+                                <label class="form-label">País de residencia</label>
+                                <div class="invalid-feedback">
+                            </div>
+
+                            <div class="mt-3 form-floating mb-3">
+                                <select class="form-select" id="living-state" name="living-state" required>
+                                    <option>Elige tu departamento de residencia</option>
+
+                                    {% for choice in form.state_actual.field.choices %}
+                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                    {% endfor %}
+
+                                </select>
+
+                                <label class="form-label">Departamento de residencia</label>
+                                <div class="invalid-feedback">
+                            </div>
+
+                            <div class="mt-3 form-floating mb-3">
+                                <select class="form-select" id="living-city" name="living-city" required>
+                                    <option>Elige tu ciudad de residencia</option>
+
+                                    {% for choice in form.city_actual.field.choices%}
+                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                    {% endfor %}
+
+                                </select>
+
+                                <label class="form-label">Ciudad de residencia</label>
+                                <div class="invalid-feedback">
+                            </div>
+
+                            <div class="mt-3 form-floating mb-3">
+                                <input type="text" class="form-control" name="postal-code" placeholder="Ingrese el código postal" required/>
+                                <label class="form-label">Ingrese su código postal</label>
+                                <div class="invalid-feedback">
+                            </div>
+
+                            <div class="mt-3 form-floating mb-3 card">
+                                <!-- <select class="form-select" name="hobbies[]" id="hobby" multiple required>
+                                    <option disabled>Elige un hobby</option>
+
+                                    {% for hobby in form.hobbies.field.choices %}
+                                        <option value="{{ hobby.0 }}">{{ hobby.1 }}</option>
+                                    {% endfor %}
+
+                                </select>
+
+                                <label class="form-label">Hobby</label>
+                                <div class="invalid-feedback"> -->
+                                
+                                <div class="card-body">
+                                    <div>
+                                        <label class="form-label">Hobbies</label>
+                                    </div>
+
+                                    <div class="hobbies-container" style="max-height: 150px; overflow-y: auto;">
+                                        {% for hobby in form.hobbies.field.choices %}
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="hobbies[]" id="hobby{{ forloop.counter }}" value="{{ hobby.0 }}">
+                                                <label class="form-check-label" for="hobby{{ forloop.counter }}">
+                                                    {{ hobby.1 }}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3 form-floating mb-3 card">
+                                <!-- <select class="form-select" name="sport" id="sport" required>
+                                    <option>Elige un deporte</option>
+
+                                    {% for sport in form.sports.field.choices %}
+                                        <option value="{{ sport.0 }}">{{ sport.1 }}</option>
+                                    {% endfor %}
+
+                                </select>
+
+                                <label class="form-label">Deporte</label>
+                                <div class="invalid-feedback"></div> -->
+
+                                <div class="card-body">
+                                    <div>
+                                        <label class="form-label">Deportes</label>
+                                    </div>
+
+                                    <div class="sports-container" style="max-height: 150px; overflow-y: auto;">
+                                        {% for sport in form.sports.field.choices %}
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="sports[]" id="hobby{{ forloop.counter }}" value="{{ sport.0 }}">
+                                                <label class="form-check-label" for="sport{{ forloop.counter }}">
+                                                    {{ sport.1 }}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 form-floating mb-3">
+                                <select class="form-select" name="marital-status" id="marital-status" required>
+                                    <option>Elige tu estado civil</option>
+
+                                    {% for hobby in form.maritalStatus.field.choices %}
+                                        <option value="{{ hobby.0 }}">{{ hobby.1 }}</option>
+                                    {% endfor %}
+
+                                </select>
+
+                                <label class="form-label">Estado civil</label>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="mt-3 form-floating mb-3">
+                                <input type="date" class="form-control" name="marital-change-date" placeholder="Ingrese la fecha en que cambió su estado civil" required/>
+                                <label class="form-label">Ingrese la fecha en que cambió su estado civil</label>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="mt-3 form-floating mb-3">
+                                <input type="text" class="form-control" name="couple-name" placeholder="Ingrese el nombre de su pareja"/>
+                                <label class="form-label">Ingrese el nombre de su pareja</label>
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="mt-3 form-floating mb-3 card">
+                                <!-- <select class="form-select" id="category" name="category">
+                                    <option>Elige una categoría</option>
+
+                                        {% for choice in form.categoryInterest.field.choices%}
+                                            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                        {% endfor %}
+
+                                </select>
+
+                                <label class="form-label">Categoría de interés</label>
+                                <div class="invalid-feedback"></div> -->
+
+                                <div class="card-body">
+                                    <div>
+                                        <label class="form-label">Categorías de interés</label>
+                                    </div>
+
+                                    <div class="categories-container" style="max-height: 150px; overflow-y: auto;">
+                                        {% for choice in form.categoryInterest.field.choices %}
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="categories[]" id="category{{ forloop.counter }}" value="{{ choice.0 }}">
+                                                <label class="form-check-label" for="category{{ forloop.counter }}">
+                                                    {{ choice.1 }}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 d-flex justify-content-center">
+                                <button type="submit" class="btn btn-outline-primary"> Enviar </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 {% endblock %}
