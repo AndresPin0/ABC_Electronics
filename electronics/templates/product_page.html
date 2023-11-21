@@ -29,7 +29,7 @@
                 <form method="post" action="#">
                     {% csrf_token %}
 
-                    <button class="btn btn-outline-primary" type="submit">Agregar al Carrito</button>
+                    <button class="btn btn-outline-primary" type="submit" {% if product.quantity_available == 0 %} disabled {% endif %}>Agregar al Carrito</button>
 
                     <input type="hidden" name="selected-product-id" id="selected-product-id" value="{{ product.product_id }}">
                 </form>
@@ -40,7 +40,7 @@
                 <form method="post" action="/requestAdditionalInfo/">
                     {% csrf_token %}
 
-                    <button class="btn btn-info text-white" type="submit">Comprar Directamente</button>
+                    <button class="btn btn-info text-white" type="submit" {% if product.quantity_available == 0 %} disabled {% endif %}>Comprar Directamente</button>
                     
                     <input type="hidden" name="selected-product-id" id="selected-product-id" value="{{ product.product_id }}">
                 </form>
