@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from electronics.models import *
 
+
 def home(request):
     try:
         if request.method == 'POST':

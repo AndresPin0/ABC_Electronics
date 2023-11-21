@@ -23,7 +23,7 @@
     
             <div class="row justify-content-center">
                 {% for product in products %}
-                    <div class="col-lg-5 mb-4">
+                    <div class="col-lg-4 mb-4">
                         <a class="product-link" data-product-id="{{ product.product_id }}" style="text-decoration: none; color: #333;" href="#">
                             <div class="product-container d-flex flex-column align-items-center">
                                 <img src="{% static product.referential_image_path %}" alt="{{ product.description }}" class="img-fluid">

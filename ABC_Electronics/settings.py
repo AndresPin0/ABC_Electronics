@@ -1,7 +1,5 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-import djongo
-
 
 """
 Django settings for abc_electronics project.
@@ -16,9 +14,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
-import djongo
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,22 +78,22 @@ WSGI_APPLICATION = 'ABC_Electronics.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-        # 'default': {
-        #     'ENGINE': 'djongo',
-        #     'NAME': 'additional_information',
-        #     'ENFORCE_SCHEMA': False,
-        #     'CLIENT': {
-        #         'host': 'mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/'
-        #     }
-        # },
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'abc_orders_rel_db',
-            'USER': 'yulukeitor',
-            'PASSWORD': 't5A0uCxhzZnr',
-            'HOST': 'ep-throbbing-bird-49216726.us-east-2.aws.neon.tech',
-            'PORT': '5432',
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'abc_orders_rel_db',
+        'USER': 'yulukeitor',
+        'PASSWORD': 't5A0uCxhzZnr',
+        'HOST': 'ep-throbbing-bird-49216726.us-east-2.aws.neon.tech',
+        'PORT': '5432',
+    }
+    # 'mongo': {
+    #     'ENGINE': 'djongo',
+    #     'NAME': 'additional_information',
+    #     'ENFORCE_SCHEMA': False,
+    #     'CLIENT': {
+    #         'host': 'mongodb+srv://abc:anc@abcelectronics.nr1t8en.mongodb.net/'
+    #     }
+    # }
 }
 
 # Password validation
