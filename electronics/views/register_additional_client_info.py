@@ -3,6 +3,7 @@ from electronics.forms import *
 from datetime import datetime
 from electronics.models import *
 import traceback
+from decimal import Decimal
 
 def register_additional_information(request):
     if request.method == 'POST':
@@ -20,6 +21,8 @@ def register_additional_information(request):
             marital_status_change_date = request.POST.get('marital-change-date', '')
             couple_name = request.POST.get('couple-name', '')
             categories = request.POST.getlist('categories[]', default=[])
+
+            product_id = request.POST.get('product-id', '')
 
             # aux_birthdate = datetime.strptime('2002-09-23', '%Y-%m-%d')
             # aux_gender = 'male'
@@ -52,7 +55,16 @@ def register_additional_information(request):
             }
 
             additional_info_collection.insert_one(additional_info)
-        
+
+            product = Product.objects.get(product_id=product_id)
+            product.selling_price = product.selling_price * Decimal(0.8)
+
+            result_message = "Éxito"
+
+            return render(request, 'neccessary_client_information.html', {
+                'product_id': product_id,
+                'product_price_discount': product.selling_price
+            })
 
         except Exception as e:
             traceback.print_exc()

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from electronics.models import *
 from electronics.views import home
+from electronics.forms import *
 
 
 def request_additional_client_information(request):
@@ -28,10 +29,13 @@ def manage_answer(request):
             answer = request.POST.get('answer', '')
 
             product_id = request.POST.get('selected-product-id', '')
+            form = MoreInformationForms()
 
             if answer == 'Sí':
                 return render(request, 'additional_client_information.html', {
-                    'product_id': product_id
+                    'product_id': product_id,
+                    'form': form
+
                 })
             else:
                 return render(request, 'neccessary_client_information.html', {
