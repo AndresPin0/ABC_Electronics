@@ -116,7 +116,7 @@ class OrderDetail(models.Model):
         return f'{self.order_number} - {self.product_id}'
 
 
-class IDK(models.Model):
+class MoreInformation(models.Model):
 
     GENDER_CHOICES = [
         ('male', 'Male'),
