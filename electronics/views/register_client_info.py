@@ -14,6 +14,7 @@ def register_client_information(request):
         try:
             customer_id = request.POST.get('customer-id', '')
             product_id = request.POST.get('selected-product-id', '')
+            product_price = request.POST.get('selected-product-id', '')
             
             product = Product.objects.get(product_id=product_id)
 

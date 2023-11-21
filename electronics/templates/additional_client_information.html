@@ -44,13 +44,15 @@
                                 <label class="form-label">Plataforma</label>
                                 <div class="invalid-feedback">
                             </div> -->
+                            
+                            <input type="hidden" name="product-id" id="product-id" value="{{ product_id }}">
 
                             <div class="mt-3 form-floating mb-3">
                                 <select class="form-select" id="born-country" name="born-country" required>
-                                    <option>Elige tu país de nacimiento</option>
+                                    <option value="">Elige tu país de nacimiento</option>
 
                                     {% for choice in form.country_birth.field.choices%}
-                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                        <option value="{{ choice.1 }}">{{ choice.1 }}</option>
                                     {% endfor %}
 
                                 </select>
@@ -62,10 +64,10 @@
 
                             <div class="mt-3 form-floating mb-3">
                                 <select class="form-select" id="born-state" name="born-state" required>
-                                    <option>Elige tu departamento de nacimiento</option>
+                                    <option value="">Elige tu departamento de nacimiento</option>
 
                                     {% for choice in form.state_birth.field.choices%}
-                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                        <option value="{{ choice.1 }}">{{ choice.1 }}</option>
                                     {% endfor %}
 
                                 </select>
@@ -76,10 +78,10 @@
 
                             <div class="mt-3 form-floating mb-3">
                                 <select class="form-select" id="born-city" name="born-city" required>
-                                    <option>Elige tu ciudad de nacimiento</option>
+                                    <option value="">Elige tu ciudad de nacimiento</option>
 
                                     {% for choice in form.city_birth.field.choices%}
-                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                        <option value="{{ choice.1 }}">{{ choice.1 }}</option>
                                     {% endfor %}
 
                                 </select>
@@ -90,10 +92,10 @@
 
                             <div class="mt-3 form-floating mb-3">
                                 <select class="form-select" id="living-country" name="living-country" required>
-                                    <option>Elige tu país de residencia</option>
+                                    <option value="">Elige tu país de residencia</option>
 
                                     {% for choice in form.country_actual.field.choices%}
-                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                        <option value="{{ choice.1 }}">{{ choice.1 }}</option>
                                     {% endfor %}
 
                                 </select>
@@ -104,10 +106,10 @@
 
                             <div class="mt-3 form-floating mb-3">
                                 <select class="form-select" id="living-state" name="living-state" required>
-                                    <option>Elige tu departamento de residencia</option>
+                                    <option value="">Elige tu departamento de residencia</option>
 
                                     {% for choice in form.state_actual.field.choices %}
-                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                        <option value="{{ choice.1 }}">{{ choice.1 }}</option>
                                     {% endfor %}
 
                                 </select>
@@ -118,10 +120,10 @@
 
                             <div class="mt-3 form-floating mb-3">
                                 <select class="form-select" id="living-city" name="living-city" required>
-                                    <option>Elige tu ciudad de residencia</option>
+                                    <option value="">Elige tu ciudad de residencia</option>
 
                                     {% for choice in form.city_actual.field.choices%}
-                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                        <option value="{{ choice.1 }}">{{ choice.1 }}</option>
                                     {% endfor %}
 
                                 </select>
@@ -157,7 +159,7 @@
                                     <div class="hobbies-container" style="max-height: 150px; overflow-y: auto;">
                                         {% for hobby in form.hobbies.field.choices %}
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="hobbies[]" id="hobby{{ forloop.counter }}" value="{{ hobby.0 }}">
+                                                <input class="form-check-input" type="checkbox" name="hobbies[]" id="hobby{{ forloop.counter }}" value="{{ hobby.1 }}">
                                                 <label class="form-check-label" for="hobby{{ forloop.counter }}">
                                                     {{ hobby.1 }}
                                                 </label>
@@ -190,7 +192,7 @@
                                     <div class="sports-container" style="max-height: 150px; overflow-y: auto;">
                                         {% for sport in form.sports.field.choices %}
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="sports[]" id="hobby{{ forloop.counter }}" value="{{ sport.0 }}">
+                                                <input class="form-check-input" type="checkbox" name="sports[]" id="hobby{{ forloop.counter }}" value="{{ sport.1 }}">
                                                 <label class="form-check-label" for="sport{{ forloop.counter }}">
                                                     {{ sport.1 }}
                                                 </label>
@@ -204,10 +206,10 @@
 
                             <div class="mt-3 form-floating mb-3">
                                 <select class="form-select" name="marital-status" id="marital-status" required>
-                                    <option>Elige tu estado civil</option>
+                                    <option value="">Elige tu estado civil</option>
 
-                                    {% for hobby in form.maritalStatus.field.choices %}
-                                        <option value="{{ hobby.0 }}">{{ hobby.1 }}</option>
+                                    {% for status in form.maritalStatus.field.choices %}
+                                        <option value="{{ status.1 }}">{{ status.1 }}</option>
                                     {% endfor %}
 
                                 </select>
@@ -249,7 +251,7 @@
                                     <div class="categories-container" style="max-height: 150px; overflow-y: auto;">
                                         {% for choice in form.categoryInterest.field.choices %}
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="categories[]" id="category{{ forloop.counter }}" value="{{ choice.0 }}">
+                                                <input class="form-check-input" type="checkbox" name="categories[]" id="category{{ forloop.counter }}" value="{{ choice.1 }}">
                                                 <label class="form-check-label" for="category{{ forloop.counter }}">
                                                     {{ choice.1 }}
                                                 </label>
