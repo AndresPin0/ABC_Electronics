@@ -187,28 +187,88 @@ class MoreInformation(models.Model):
         ('Home', 'Home'), ('Garden', 'Garden'), ('Pets', 'Pets'), ('Toys', 'Toys'),
         ('Baby', 'Baby'), ('Kids', 'Kids'), ('Automotive', 'Automotive'), ('Tools', 'Tools')]
 
-    birth_date = models.DateTimeField(null=False, blank=False)
-    gender = models.CharField(max_length=30, choices=GENDER_CHOICES, null=False, blank=False)
-    studying = models.BooleanField(null=False, blank=False)
-    play_video_games = models.BooleanField(null=False, blank=False)
-    platform = models.CharField(max_length=30, choices=PLATFORM_CHOICES, null=False, blank=False)
-    country_birth = models.CharField(choices=COUNTRY_CHOICES, max_length=100, default='Colombia', null=False,
-                                     blank=False)
-    state_birth = models.CharField(choices=COUNTRY_STATES_CHOICES, max_length=100, default='Valle del Cauca',
-                                   null=False, blank=False)
-    city_birth = models.CharField(choices=STATE_CITY_CHOICES, max_length=100, null=False, blank=False)
-    country_actual = models.CharField(choices=COUNTRY_CHOICES, max_length=100, default='Colombia', null=False,
+    birth_date = models.DateTimeField(null=False, 
                                       blank=False)
-    state_actual = models.CharField(choices=COUNTRY_STATES_CHOICES, max_length=100, default='Valle del Cauca',
+
+    gender = models.CharField(max_length=30, 
+                              choices=GENDER_CHOICES, 
+                              null=False, 
+                              blank=False)
+
+    studying = models.BooleanField(null=False, 
+                                   blank=False)
+
+    play_video_games = models.BooleanField(null=False, 
+                                           blank=False)
+
+    platform = models.CharField(max_length=30, 
+                                choices=PLATFORM_CHOICES, 
+                                null=False, 
+                                blank=False)
+
+    country_birth = models.CharField(choices=COUNTRY_CHOICES, 
+                                     max_length=100, 
+                                     default='Colombia', 
+                                     null=False,
+                                     blank=False)
+
+    state_birth = models.CharField(choices=COUNTRY_STATES_CHOICES, 
+                                   max_length=100, 
+                                   default='Valle del Cauca',
+                                   null=False, blank=False)
+
+    city_birth = models.CharField(choices=STATE_CITY_CHOICES, 
+                                  max_length=100, 
+                                  null=False, 
+                                  blank=False)
+
+    country_actual = models.CharField(choices=COUNTRY_CHOICES, 
+                                      max_length=100, 
+                                      default='Colombia', 
+                                      null=False,
+                                      blank=False)
+
+    state_actual = models.CharField(choices=COUNTRY_STATES_CHOICES, 
+                                    max_length=100, 
+                                    default='Valle del Cauca',
                                     null=False, blank=False)
-    city_actual = models.CharField(choices=STATE_CITY_CHOICES, max_length=100, null=False, blank=False)
-    postalCode = models.CharField(choices=POSTAL_CODE_CHOICES, max_length=100, null=False, blank=False)
-    hobbies = models.CharField(choices=HOBBIES_CHOICES, max_length=100, null=False, blank=False)
-    sports = models.CharField(choices=SPORTS_CHOICES, max_length=100, null=False, blank=False)
-    maritalStatus = models.CharField(choices=MARITAL_STATUS_CHOICES, max_length=100, null=False, blank=False)
-    statusDateChanged = models.DateTimeField(null=False, blank=False)
-    coupleName = models.CharField(max_length=100, null=False, blank=False)
-    categoryInterest = models.CharField(choices=CATEGORY_INTEREST_CHOICES, max_length=100, null=False, blank=False)
+
+    city_actual = models.CharField(choices=STATE_CITY_CHOICES, 
+                                   max_length=100, 
+                                   null=False, 
+                                   blank=False)
+
+    postalCode = models.CharField(choices=POSTAL_CODE_CHOICES, 
+                                  max_length=100, 
+                                  null=False, 
+                                  blank=False)
+
+    hobbies = models.CharField(choices=HOBBIES_CHOICES, 
+                               max_length=100,
+                                null=False, 
+                                blank=False)
+
+    sports = models.CharField(choices=SPORTS_CHOICES, 
+                              max_length=100, 
+                              null=False, 
+                              blank=False)
+
+    maritalStatus = models.CharField(choices=MARITAL_STATUS_CHOICES, 
+                                     max_length=100, 
+                                     null=False, 
+                                     blank=False)
+
+    statusDateChanged = models.DateTimeField(null=False, 
+                                             blank=False)
+
+    coupleName = models.CharField(max_length=100, 
+                                  null=False, 
+                                  blank=False)
+
+    categoryInterest = models.CharField(choices=CATEGORY_INTEREST_CHOICES, 
+                                        max_length=100, 
+                                        null=False, 
+                                        blank=False)
 
     class Meta:
         db_table = 'clients'
